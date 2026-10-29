@@ -1,0 +1,313 @@
+/* ==========================================================
+   Subliminal Studio — estilos de componentes
+   Tailwind se encarga del layout; aquí van las piezas
+   reutilizables (tarjetas, sliders, dropzone, botones...).
+   ========================================================== */
+
+:root {
+  --accent: #8b5cf6;        /* violeta principal */
+  --accent-2: #22d3ee;      /* cian secundario */
+  --surface: rgba(30, 27, 55, 0.55);
+  --border: rgba(167, 139, 250, 0.18);
+  --text-muted: #94a3b8;
+}
+
+body { background: #0b0a1a; }
+
+/* Halo de color de fondo */
+.bg-glow {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(600px 400px at 15% -5%, rgba(139, 92, 246, 0.25), transparent 70%),
+    radial-gradient(500px 400px at 95% 10%, rgba(34, 211, 238, 0.12), transparent 70%);
+}
+
+.logo-mark {
+  width: 48px; height: 48px;
+  display: grid; place-items: center;
+  border-radius: 14px;
+  color: white;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  box-shadow: 0 8px 30px rgba(139, 92, 246, 0.4);
+}
+.logo-mark svg { width: 26px; height: 26px; }
+
+.badge {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.35rem 0.8rem;
+  font-size: 0.75rem;
+  color: #c4b5fd;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: rgba(139, 92, 246, 0.08);
+}
+
+/* ---------- Tarjetas ---------- */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 1.5rem;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  min-width: 0;
+}
+.card-header { display: flex; gap: 0.9rem; align-items: flex-start; margin-bottom: 1.25rem; }
+.step {
+  flex: none;
+  width: 32px; height: 32px;
+  display: grid; place-items: center;
+  font-weight: 700; font-size: 0.9rem;
+  border-radius: 10px;
+  background: rgba(139, 92, 246, 0.2);
+  color: #ddd6fe;
+}
+.step-done { background: rgba(34, 211, 238, 0.2); color: #a5f3fc; }
+
+/* ---------- Pestañas ---------- */
+.tabs {
+  display: inline-flex;
+  padding: 4px;
+  margin-bottom: 1rem;
+  border-radius: 12px;
+  background: rgba(15, 12, 35, 0.7);
+  border: 1px solid var(--border);
+}
+.tab {
+  padding: 0.45rem 1rem;
+  font-size: 0.875rem;
+  border-radius: 9px;
+  color: var(--text-muted);
+  transition: background .15s, color .15s;
+}
+.tab:hover { color: #e2e8f0; }
+.tab.is-active { background: var(--accent); color: white; }
+
+/* ---------- Zona para soltar archivos ---------- */
+.dropzone {
+  display: flex; flex-direction: column; align-items: center; gap: 0.4rem;
+  padding: 2rem 1rem;
+  text-align: center;
+  cursor: pointer;
+  border: 2px dashed rgba(167, 139, 250, 0.35);
+  border-radius: 16px;
+  transition: border-color .15s, background .15s;
+}
+.dropzone:hover, .dropzone.is-dragover {
+  border-color: var(--accent);
+  background: rgba(139, 92, 246, 0.08);
+}
+.dropzone:focus-within { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* ---------- Grabación ---------- */
+.record-box {
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  flex-wrap: wrap;
+  padding: 1.25rem;
+  border-radius: 16px;
+  background: rgba(15, 12, 35, 0.6);
+  border: 1px solid var(--border);
+}
+.record-btn {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  padding: 0.7rem 1.2rem;
+  font-weight: 600;
+  border-radius: 999px;
+  background: rgba(244, 63, 94, 0.15);
+  color: #fecdd3;
+  border: 1px solid rgba(244, 63, 94, 0.4);
+  transition: background .15s;
+}
+.record-btn:hover { background: rgba(244, 63, 94, 0.25); }
+.record-dot { width: 12px; height: 12px; border-radius: 50%; background: #f43f5e; }
+.record-btn.is-recording .record-dot { border-radius: 3px; animation: pulse 1s infinite; }
+@keyframes pulse { 50% { opacity: 0.35; } }
+
+.loaded-box {
+  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: 16px;
+  background: rgba(15, 12, 35, 0.6);
+  border: 1px solid var(--border);
+}
+
+/* ---------- Forma de onda ---------- */
+.wave { display: block; width: 100%; height: 56px; margin-top: 0.75rem; }
+.wave-lg { height: 96px; }
+
+/* ---------- Selector de fondo ---------- */
+.bg-option {
+  display: flex; flex-direction: column; align-items: center; gap: 0.35rem;
+  padding: 0.9rem 0.5rem;
+  font-size: 0.875rem;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: rgba(15, 12, 35, 0.5);
+  color: #cbd5e1;
+  transition: border-color .15s, background .15s, transform .1s;
+}
+.bg-option:hover { border-color: rgba(167, 139, 250, 0.5); }
+.bg-option:active { transform: scale(0.97); }
+.bg-option.is-selected {
+  border-color: var(--accent);
+  background: rgba(139, 92, 246, 0.18);
+  color: white;
+  box-shadow: 0 0 0 1px var(--accent) inset;
+}
+.bg-emoji { font-size: 1.5rem; line-height: 1; }
+
+/* ---------- Campos y sliders ---------- */
+.field-top { display: flex; justify-content: space-between; align-items: center; gap: 0.5rem; margin-bottom: 0.6rem; }
+.field-top label { font-size: 0.9rem; font-weight: 500; }
+.field-scale { display: flex; justify-content: space-between; font-size: 0.7rem; color: #64748b; margin-top: 0.35rem; }
+.field-highlight {
+  padding: 1rem 1.1rem;
+  border-radius: 16px;
+  background: rgba(139, 92, 246, 0.08);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+}
+.readout {
+  font-variant-numeric: tabular-nums;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #ddd6fe;
+}
+
+.level-tag { font-size: 0.7rem; font-weight: 600; padding: 0.15rem 0.5rem; border-radius: 999px; }
+.level-tag[data-level="audible"]   { background: rgba(251, 146, 60, 0.18); color: #fdba74; }
+.level-tag[data-level="low"]       { background: rgba(250, 204, 21, 0.15); color: #fde68a; }
+.level-tag[data-level="subliminal"]{ background: rgba(139, 92, 246, 0.22); color: #ddd6fe; }
+.level-tag[data-level="inaudible"] { background: rgba(34, 211, 238, 0.15); color: #a5f3fc; }
+
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  border-radius: 999px;
+  /* --fill lo actualiza app.js para pintar la parte "llena" */
+  background: linear-gradient(to right, var(--accent) var(--fill, 50%), rgba(148, 163, 184, 0.2) var(--fill, 50%));
+  cursor: pointer;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  background: white;
+  border: 3px solid var(--accent);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+input[type="range"]::-moz-range-thumb {
+  width: 16px; height: 16px;
+  border-radius: 50%;
+  background: white;
+  border: 3px solid var(--accent);
+}
+input[type="range"]:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+
+.check { display: flex; gap: 0.6rem; align-items: flex-start; font-size: 0.875rem; cursor: pointer; }
+.check input { margin-top: 0.2rem; width: 16px; height: 16px; accent-color: var(--accent); flex: none; }
+
+/* ---------- Botones ---------- */
+.btn-primary {
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.75rem;
+  width: 100%; max-width: 420px;
+  padding: 1.1rem 2rem;
+  font-size: 1.15rem; font-weight: 700;
+  color: white;
+  border-radius: 18px;
+  background: linear-gradient(135deg, var(--accent), #6366f1 60%, var(--accent-2));
+  box-shadow: 0 12px 40px rgba(139, 92, 246, 0.45);
+  transition: transform .1s, box-shadow .15s, opacity .15s;
+}
+.btn-primary:hover:not(:disabled) { box-shadow: 0 16px 50px rgba(139, 92, 246, 0.6); }
+.btn-primary:active:not(:disabled) { transform: scale(0.98); }
+.btn-primary:disabled { opacity: 0.6; cursor: progress; }
+
+.btn-secondary {
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.4rem;
+  padding: 0.8rem 1rem;
+  font-weight: 600;
+  border-radius: 14px;
+  background: rgba(139, 92, 246, 0.18);
+  border: 1px solid rgba(139, 92, 246, 0.45);
+  color: #ede9fe;
+  transition: background .15s;
+}
+.btn-secondary:hover:not(:disabled) { background: rgba(139, 92, 246, 0.3); }
+.btn-secondary:disabled { opacity: 0.5; cursor: progress; }
+
+.btn-ghost {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.55rem 1rem;
+  font-size: 0.875rem; font-weight: 500;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  color: #cbd5e1;
+}
+.btn-ghost:hover { background: rgba(139, 92, 246, 0.1); }
+.btn-ghost.is-playing { border-color: var(--accent-2); color: #a5f3fc; }
+
+.select {
+  padding: 0 0.75rem;
+  font-size: 0.85rem;
+  border-radius: 14px;
+  background: rgba(15, 12, 35, 0.8);
+  border: 1px solid var(--border);
+  color: #e2e8f0;
+}
+
+/* ---------- Progreso ---------- */
+.progress {
+  width: 100%; max-width: 420px; height: 6px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(148, 163, 184, 0.15);
+}
+.progress-bar {
+  height: 100%; width: 0%;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  transition: width .2s;
+}
+/* Barra "indeterminada" mientras renderiza (no sabemos el % real) */
+.progress.is-indeterminate .progress-bar {
+  width: 35%;
+  animation: indeterminate 1.1s ease-in-out infinite;
+}
+@keyframes indeterminate {
+  from { transform: translateX(-100%); }
+  to   { transform: translateX(300%); }
+}
+
+.stale-note {
+  margin-bottom: 0.75rem;
+  padding: 0.6rem 0.9rem;
+  font-size: 0.85rem;
+  border-radius: 12px;
+  background: rgba(250, 204, 21, 0.1);
+  border: 1px solid rgba(250, 204, 21, 0.3);
+  color: #fde68a;
+}
+
+audio { color-scheme: dark; height: 40px; }
+
+/* ---------- Aviso flotante ---------- */
+.toast {
+  position: fixed;
+  left: 50%; bottom: 24px;
+  transform: translateX(-50%);
+  max-width: calc(100vw - 32px);
+  padding: 0.75rem 1.1rem;
+  font-size: 0.875rem;
+  border-radius: 14px;
+  background: #1e1b3a;
+  border: 1px solid var(--border);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  z-index: 50;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
